@@ -13,7 +13,7 @@ Aasteroide::Aasteroide()
 	PrimaryActorTick.bCanEverTick = true;
 	
 
-	// Créer un composant de collision
+	
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
 	CollisionComponent->InitSphereRadius(50.f);
 	CollisionComponent->SetCollisionProfileName(TEXT("PhysicsActor")); 
@@ -21,15 +21,15 @@ Aasteroide::Aasteroide()
 	CollisionComponent->SetNotifyRigidBodyCollision(true); 
 	RootComponent = CollisionComponent;
 
-	// Créer un mesh pour le visuel
+	
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
 	MeshComponent->SetupAttachment(RootComponent);
 
-	// Stocker l’échelle d’origine
+	
 	CurrentScale = FVector(1.f, 1.f, 1.f);
 }
 
-// Called when the game starts or when spawned
+
 void Aasteroide::BeginPlay()
 {
 	Super::BeginPlay();
@@ -38,13 +38,13 @@ void Aasteroide::BeginPlay()
 	
 }
 
-// Called every frame
+
 void Aasteroide::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
-// Fonction appelée en cas de collision
+
 void Aasteroide::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
@@ -85,8 +85,8 @@ void Aasteroide::Damage()
 		}
 		
 		FRotator SpawnRotation = GetActorRotation();
-		SpawnRotation.Yaw += 180.0f; // Ajoute 90° sur l'axe Z
-		SpawnRotation.Pitch += 90.0f; // Rotation sur l'axe X
+		SpawnRotation.Yaw += 180.0f; 
+		SpawnRotation.Pitch += 90.0f; 
 		SpawnRotation.Roll += 90.0f; 
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(
 		GetWorld(),
